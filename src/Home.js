@@ -1,48 +1,18 @@
+
 import BlogList from "./BlogList";
-import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 
 const Home = () => {
-
-    const [blogs, setBlogs] = useState([
-        {
-          title: "My new website",
-          body: "lorem ipsum...",
-          author: "mario",
-          id: 1,
-        },
-        { title: "Welcome party!", body: "lorem ipsum...", author: "yoshi", id: 2 },
-        {
-          title: "Web dev top tips",
-          body: "lorem ipsum...",
-          author: "mario",
-          id: 3,
-        },
-      ]);
-
-
-    const [name, setName] = useState('mario');
-
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-    }
-
-    useEffect(() => {
-        console.log("Use Effect Ran");
-        console.log(name);
-    }, [name]);
+    const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs');
 
     return (
         <div className="home">
-            <BlogList blogs={blogs} title="Blogs" handleDelete={handleDelete}/>
-            <button className="bg-neutral-100 py-3 px-2 rounded-lg hover:bg-neutral-200" onClick={() => setName('Jugan')}>Change Name</button>
-            <p>{ name }</p>
+           {error && <div className="text-center py-3 px-2 bg-red-100 border border-red-900 rounded-lg text-red-900 mb-5 animate-pulse">{error}</div>}
+           {isPending && <div className="text-center animate-bounce text-3xl font-semibold">Loading...</div>}
+           {blogs && <BlogList blogs={blogs} title="Blogs"/>}
         </div>
     ); 
 
 }
-
-// Ended in video number 7 start 8 next
-
 
 export default Home;

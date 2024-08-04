@@ -10,9 +10,8 @@ const BlogList = ({blogs, title, handleDelete}) => {
           <h2 className="text-xl font-semibold text-center mb-4">
             {blog.title}
           </h2>
-          <p className="mb-3 text-center">{blog.body}</p>
           <p className="text-center">Created By: {blog.author}</p>
-          <button onClick={() => handleDelete(blog.id)} className="bg-red-500 hover:bg-red-600 transition-all delay-75 ease-in-out text-white py-2 px-3 block mx-auto mt-4 rounded-lg">Delete</button>
+          <button className="bg-red-500 hover:bg-red-600 transition-all delay-75 ease-in-out text-white py-2 px-3 block mx-auto mt-4 rounded-lg">Delete</button>
         </div>
       ))}
       ;
