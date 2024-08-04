@@ -14,7 +14,6 @@ const BlogList = ({blogs, title, handleDelete}) => {
           <button className="bg-red-500 hover:bg-red-600 transition-all delay-75 ease-in-out text-white py-2 px-3 block mx-auto mt-4 rounded-lg">Delete</button>
         </div>
       ))}
-      ;
     </div>
   );
 };
